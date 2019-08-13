@@ -1,0 +1,7 @@
+@import './test.scss';
+
+.root {
+  background: #f00;
+  transform: translate3d(30px, 30px, 0);
+  display: flex;
+}
