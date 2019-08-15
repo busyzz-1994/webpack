@@ -1,19 +1,29 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 module.exports = {
-  entry: path.resolve(__dirname, 'src/index.js'),
-  mode: 'development',
-  //dev
-  devtool: 'cheap-module-eval-source-map',
-  //pro
-  // devtool:'cheap-module-source-map',
+  entry: path.resolve('./src/index.js'),
   output: {
     filename: '[name]_[hash:5].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('./dist'),
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            [
+              'env',
+              {
+                useBuiltIns: 'usage',
+              },
+            ],
+            'stage-0',
+            'react',
+          ],
+        },
+      },
       {
         test: /\.scss$/,
         use: [
@@ -50,15 +60,7 @@ module.exports = {
   },
   plugins: [
     new htmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html'),
+      template: path.resolve('./src/index.html'),
     }),
-    new webpack.HotModuleReplacementPlugin(),
   ],
-  devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
-    host: '0.0.0.0',
-    port: 8888,
-    open: true,
-    hot: true,
-  },
 };

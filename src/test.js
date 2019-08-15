@@ -1,5 +1,6 @@
-let div = document.createElement('div');
-div.innerHTML = 'opppppppccc';
-document.body.appendChild(div);
-const a = 1;
-export default a;
+export const fn = (a, b) => {
+  return 'qingzhizhi';
+};
+export const fn_1 = (a, b) => {
+  return 'busyzz';
+};

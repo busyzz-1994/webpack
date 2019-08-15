@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "npm run clear &&  webpack ",
+    "dev": " webpack-dev-server --config build/webpack.dev.js",
+    "build": "npm run clear &&  webpack --config build/webpack.prod.js",
     "clear": "rimraf dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "postcss-loader": "^3.0.0",
@@ -20,14 +25,20 @@
     "url-loader": "^2.1.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "autoprefixer": "^9.6.1",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "core-js": "^3.2.1",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.12.0",
     "postcss": "^7.0.17",
     "postcss-import": "^12.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "sass-loader": "^7.2.0"
   }
 }

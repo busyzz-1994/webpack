@@ -1,9 +1,19 @@
-import './index.scss';
-import './font.scss';
-import imgSrc from './assets/images/loginText.jpg';
-import a from './test';
-const root = document.getElementById('root');
-const img = new Image();
-img.src = imgSrc;
-root.appendChild(img);
-console.log('xxxxx');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { fn } from './test';
+let a = [1, 2, 3];
+let b = a.map(item => item * 2);
+let obj = {
+  name: '1',
+};
+let res = fn();
+console.log({
+  ...obj,
+  age: 32,
+});
+class Test extends Component {
+  render() {
+    return <div>hello world!</div>;
+  }
+}
+ReactDOM.render(<Test />, document.getElementById('root'));
