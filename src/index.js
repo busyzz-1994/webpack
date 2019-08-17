@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { fn } from './test';
-let a = [1, 2, 3];
-let b = a.map(item => item * 2);
-let obj = {
-  name: '1',
-};
-let res = fn();
-console.log({
-  ...obj,
-  age: 32,
-});
-class Test extends Component {
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Test from './test';
+import './index.css';
+import './index.scss';
+import busyzzLib, { math } from 'busyzz-lib';
+const { add } = math;
+const res = add(12, 4);
+console.log(res);
+class App extends Component {
   render() {
-    return <div>hello world!</div>;
+    return (
+      <Router>
+        <Link to="/test">test</Link>
+        <Switch>
+          <Route path="/test" component={Test} />
+        </Switch>
+      </Router>
+    );
   }
 }
-ReactDOM.render(<Test />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
