@@ -2,11 +2,12 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 module.exports = {
-  entry: path.resolve('./src/index.js'),
+  entry: path.resolve('./src/index.tsx'),
   output: {
     filename: 'js/[name]_[hash:5].js',
     //路径以package.json为基准
     path: path.resolve('./dist'),
+    publicPath: '',
   },
   module: {
     rules: [
@@ -17,10 +18,10 @@ module.exports = {
           presets: [
             [
               'env',
-              {
-                //按需引入babel-polyfill ，文件里面不需要再手动引入，解决babel-polyfill包过大的问题
-                useBuiltIns: 'usage',
-              },
+              // {
+              //   //按需引入babel-polyfill ，文件里面不需要再手动引入，解决babel-polyfill包过大的问题
+              //   useBuiltIns: 'usage',
+              // },
             ],
             'stage-0',
             'react',
@@ -28,12 +29,17 @@ module.exports = {
           // plugins: ['dynamic-import-webpack'],
         },
       },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+      },
       //字体用fileloader
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file-loader',
         options: {
-          outputPath: '/fonts',
+          outputPath: 'fonts/',
         },
       },
       //图片用url-loader
@@ -42,11 +48,13 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 8080,
-          outputPath: '/images',
+          outputPath: 'images/',
+          name: '[name]_[hash:5].[ext]',
         },
       },
     ],
   },
+
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -77,6 +85,12 @@ module.exports = {
         // },
       },
     },
+  },
+  resolve: {
+    alias: {
+      components: path.resolve('./src/components'),
+    },
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
   plugins: [
     new htmlWebpackPlugin({

@@ -10,6 +10,7 @@ const prodConfig = {
       {
         test: /\.(sc|c)ss$/,
         use: [
+          //提取css
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',

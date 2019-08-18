@@ -37,6 +37,7 @@ const devConfig = {
     open: true,
     hot: true,
     compress: true,
+    historyApiFallback: true,
   },
 };
 module.exports = webpackMerge(commonConfig, devConfig);
